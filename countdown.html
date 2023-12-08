@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown App</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin: 50px;
+      background-color: rgb(64, 77, 175); /* Background color of the page */
+    }
+
+    h1 {
+    font-size: 6em;
+      color: rgb(201, 11, 198); /* Color of the heading */
+    }
+
+    h2 {
+        font-size: 4em;
+        color: #d6d658; /* Color of the heading */
+    }
+
+    #countdown {
+      font-size: 10em;
+      margin-bottom: 20px;
+      color: #ffffff; /* Text color of the countdown */
+      background-color: #3498db; /* Background color of the countdown */
+      padding: 10px;
+      border-radius: 10px; /* Border radius for rounded corners */
+      display: inline-block;
+    }
+
+    #custom-message {
+      font-size: 3.5em;
+      color: #d6d658;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Florida Countdown!!!</h1>
+  <h2>you have</h2>
+
+  <div id="countdown">00:00:00</div>
+  <div id="custom-message">WHOOOOO!!!!!</div>
+
+  <script>
+    // Set the target date and time for the countdown (replace with your own)
+    const targetDate = new Date('December 29, 2023 00:00:00').getTime();
+
+    // Update the countdown every second
+    const countdownInterval = setInterval(updateCountdown, 1000);
+
+    function updateCountdown() {
+      const currentDate = new Date().getTime();
+      const timeDifference = targetDate - currentDate;
+
+      if (timeDifference <= 0) {
+        // Insert your own action when the countdown reaches zero (e.g., redirect, display a message)
+        clearInterval(countdownInterval);
+        document.getElementById('countdown').innerHTML = '00:00:00';
+        document.getElementById('custom-message').innerHTML = 'Goodybye, Texas - Hello, Florida!';
+      } else {
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        // Format the countdown and update the display
+        const formattedCountdown = `${formatTime(days)}:${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`;
+        document.getElementById('countdown').innerHTML = formattedCountdown;
+
+        // Insert your own custom message or action during the countdown
+        // For example, you can update the message based on the remaining time
+        document.getElementById('custom-message').innerHTML = 'days left to be a Texan :-)';
+      }
+    }
+
+    function formatTime(time) {
+      // Add leading zero if the time is a single digit
+      return time < 10 ? `0${time}` : time;
+    }
+  </script>
+
+</body>
+</html>
